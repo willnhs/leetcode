@@ -1,8 +1,10 @@
 public class BestTimeToBuyAndSellStock{
   public static void main(String[] args){
-    int[] prices = new int[] {7, 6, 4, 3, 1};
+    int[] prices_1 = new int[] {7, 1, 5, 3, 6, 4};
+    int[] prices_2 = new int[] {7, 6, 4, 3, 1};
 
-    System.out.println(maxProfit(prices));
+    System.out.println(maxProfit(prices_1));
+    System.out.println(maxProfit(prices_2));
   }
 
   public static int maxProfit(int[] prices){
@@ -10,9 +12,14 @@ public class BestTimeToBuyAndSellStock{
 
     for (int i = 0; i < prices.length; i++){
       for (int j = i + 1; j < prices.length; j++){
-        int diff = prices[j] - prices[i];
-        if (diff > max){
-          max = diff;
+        if (prices[j] < prices[i]){
+          continue;
+        }
+        else{
+          int diff = prices[j] - prices[i];
+          if (diff > max){
+            max = diff;
+          }
         }
       }
     }
