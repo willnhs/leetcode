@@ -16,11 +16,13 @@ public class FindMinimumInRotatedSortedArray{
     int[] nums2 = new int[] {4, 5, 0, 1, 2, 3};
     int[] nums3 = new int[] {4, 5, 6, 7};
     int[] nums4 = new int[] {1, 2, 3, 4, 5};
+    int[] nums5 = new int[] {2, 1};
 
     System.out.println("Min element in nums1: " + findMin(nums1));
     System.out.println("Min element in nums2: " + findMin(nums2));
     System.out.println("Min element in nums3: " + findMin(nums3));
     System.out.println("Min element in nums4: " + findMin(nums4));
+    System.out.println("Min element in nums5: " + findMin(nums5));
   }
 
   public static int findMin(int[] nums){
@@ -28,7 +30,7 @@ public class FindMinimumInRotatedSortedArray{
     int left = 0;
     int right = nums.length - 1;
 
-    while (left < right){
+    while (left <= right){
       // if the two sub arrays are already sorted, leftmost value could be the minimum
       // ex: [1, 2, 3, 4, 5, 6] or [4, 5, 6, 1, 2, 3]
       if (nums[left] < nums[right]){
