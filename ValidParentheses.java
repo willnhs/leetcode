@@ -6,39 +6,45 @@ public class ValidParentheses{
     System.out.println(isValid(s2));
   }
 
-  public static boolean isValid(String s){
-    if (s.length() % 2 == 1){
-      return false;
-    }
-
-    int left = 0;
-    int right = s.length() - 1;
-
-    while (left < right){
-      char lChar = s.charAt(left);
-      char rChar = s.charAt(right);
-
-      switch (lChar){
-        case '(' -> {
-          if (rChar != ')'){
-            return false;
-          }
+  public boolean isValid(String s){
+    Stack<Character> stack = new Stack<>();
+    
+    for (int i = 0; i < s.length(); i++){
+      char ch = s.charAt(i);
+      
+      if (ch == '{' || ch == '(' || ch == '['){
+        stack.push(ch);
+      }
+      else if (ch == '}' || ch == ')' || ch == ']'){
+        if (stack.isEmpty()){
+          return false;
         }
-        case '{' -> {
-          if (rChar != '}'){
-            return false;
+        char match = stack.pop();
+
+        switch (ch){
+          case '}' -> {
+            if (match != '{'){
+              return false;
+            }
           }
-        }
-        case '[' -> {
-          if (rChar != ']'){
-            return false;
+          case ')' -> {
+            if (match != '('){
+              return false;
+            }
+          }
+          case ']' -> {
+            if (match != '['){
+              return false;
+            }
           }
         }
       }
-      ++left;
-      --right;
     }
-
+    
+    if (!stack.isEmpty()){
+      return false;
+    }
+    
     return true;
   }
 }
