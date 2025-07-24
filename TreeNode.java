@@ -36,4 +36,31 @@ public class TreeNode{
     }
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
   }
+
+  // this is identical to maxDepth except that this method name makes more sense to me
+  public int findHeight(TreeNode root){
+    if (root == null){
+      return 0;
+    }
+    return 1 + Math.max(findHeight(root.left), findHeight(root.right));
+  }
+
+  public boolean isBalanced(TreeNode root){
+    // base case
+    if (root == null){
+      return true;
+    }
+
+    // a tree is balanced at every node iff
+    // the difference in height between the left subtree and the right subtree is at most once
+    // the subtrees are balanced themselves
+    int leftHeight = findHeight(root.left);
+    int rightHeight = findHeight(root.right);
+
+    return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+  }
+
+  public static void main(String[] args){
+
+  }
 }
