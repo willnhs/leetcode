@@ -69,4 +69,14 @@ public class TreeNode{
     }
     return false;
   }
+  
+  public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    if (isSameTree(root, subRoot)){
+      return true;
+    }
+    else if (root != null && subRoot != null){
+      return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+    return false;
+  }
 }
